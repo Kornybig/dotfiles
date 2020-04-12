@@ -33,7 +33,7 @@ esac
 
 # Run main playbook
 echo "[i] Run Playbook"
-ansible-playbook ../ansible/dotfiles.yaml --ask-become-pass
+ansible-playbook ansible/dotfiles.yaml --ask-become-pass
 echo "[i] Done."
 
 

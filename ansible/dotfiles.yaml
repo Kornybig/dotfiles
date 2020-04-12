@@ -10,7 +10,7 @@
 
     - name: Enable tty_tickets
       lineinfile:
-        dest: /et/sudoers
+        dest: /etc/sudoers
         state: present
         line: "Defaults tty_tickets"
         validate: "visudo -cf %s"
