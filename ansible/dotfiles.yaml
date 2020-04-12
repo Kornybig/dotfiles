@@ -40,3 +40,7 @@
     - include: tasks/link_files.yaml
       tags:
         - links
+
+    - include: tasks/packages.yaml
+      tags:
+        - packages

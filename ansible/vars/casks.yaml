@@ -1,0 +1,11 @@
+---
+casks:
+  docker:
+  firefox:
+  google-chrome:
+  iterm2:
+  jetbrains-toolbox:
+  slack:
+  visual-studio-code:
+  virtualbox:
+  wireshark:

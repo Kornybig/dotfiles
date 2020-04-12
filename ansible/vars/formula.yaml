@@ -1,0 +1,20 @@
+---
+formula:
+  ack:
+  ansible:
+  neovim:
+  archey:
+  bash-completion:
+  bash:
+  htop:
+  jq:
+  kubernetes-cli:
+  kubernetes-helm:
+  nmap:
+  openssl:
+  python:
+  python3:
+  telnet:
+  tmux:
+  tree:
+  zsh:
