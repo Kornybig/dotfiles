@@ -1,0 +1,42 @@
+---
+- name: Playbook to manage my dotfiles
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Make sure dotfiles are present
+      git:
+        repo: https://github.com/oemilsson/dotfiles
+        dest: ~/.dotfiles
+
+    - name: Enable tty_tickets
+      lineinfile:
+        dest: /et/sudoers
+        state: present
+        line: "Defaults tty_tickets"
+        validate: "visudo -cf %s"
+      become: yes
+      when: ansible_os_family == "Darwin"
+
+    - name: Install oh-my-zsh
+      git:
+        repo: https://github.com/robbyrussell/oh-my-zsh.git
+        dest: ~/.local/share/oh-my-zsh
+        update: yes
+
+    - name: Install tmux plugin manager
+      git:
+        repo: https://github.com/tmux-plugins/tpm.git
+        dest: ~/.local/share/tpm
+        update: yes
+
+    - name: Create folder
+      file:
+        path: "{{item}}"
+        state: directory
+      loop:
+        - "~/.config/tmux/"
+        - "~/.config/nvim/"
+
+    - include: tasks/link_files.yaml
+      tags:
+        - links

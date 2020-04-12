@@ -1,0 +1,9 @@
+---
+- name: link dotfiles
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "~/.dotfiles/config/init.vim", dest: "~/.config/nvim/.init.vim"}
+    - { src: "~/.dotfiles/config/.tmux.conf", dest: "~/.config/tmux/.tmux.conf"}
