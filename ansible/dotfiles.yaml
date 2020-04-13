@@ -71,3 +71,23 @@
     - include: tasks/shells.yaml
       tags:
         - shells
+
+    - include: tasks/dock.yaml
+      tags:
+        - dock
+
+    - include: tasks/macos_defaults.yaml
+      when: ansible_os_family == "Darwin"
+      tags:
+        - macos_defaults
+
+  handlers:
+    - name: Kill Dock
+      command: killall Dock
+
+    - name: Kill Finder
+      command: killall Finder
+
+    - name: Kill Terminal
+      command: killall Terminal
+      ignore_errors: yes

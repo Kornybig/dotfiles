@@ -4,6 +4,8 @@ set -e
 echo "[i] Ask for sudo password"
 sudo -v
 
+sudo sed -i -e "s/^%admin.*/%admin  ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
+
 case "$(uname -s)" in
     Darwin)
         # install Command Line Tools
@@ -34,6 +36,6 @@ esac
 # Run main playbook
 echo "[i] Run Playbook"
 ansible-playbook ansible/dotfiles.yaml --ask-become-pass
+sudo sed -i -e "s/^%admin.*/%admin  ALL=(ALL) ALL/" /etc/sudoers
 echo "[i] Done."
-
 

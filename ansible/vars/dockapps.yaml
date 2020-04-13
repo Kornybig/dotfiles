@@ -1,0 +1,26 @@
+
+dockitems_to_remove:
+  - Launchpad
+  - Calender
+  - Contacts
+  - Notes
+  - Reminders
+  - Maps
+  - Messages
+  - Pages
+  - Photos
+  - FaceTime
+  - Terminal
+  - iBooks
+  - iTunes
+  - App Store
+  - Siri
+  - Safari
+  - Mail
+  - System Preferences
+
+dockitems_to_persist:
+  - name: VirtualBox
+    path: /Applications/VirtualBox.app
+  - name: iTerm
+    path: /Applications/iTerm.app

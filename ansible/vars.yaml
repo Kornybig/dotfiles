@@ -1,3 +1,7 @@
 ---
+dock_icon_size: 40
+keyboard_initial_key_repeat_delay: 20
+keyboard_key_repeat_rate: 1
+macos_auto_correct: "false"
 login_shell: /usr/local/bin/zsh
 k3s_version: v1.17.4+k3s1
