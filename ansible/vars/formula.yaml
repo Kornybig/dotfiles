@@ -2,20 +2,22 @@
 formula:
   ack:
   ansible:
-  neovim:
-  stern:
   archey:
   bash-completion:
   bash:
+  dockutil:
   htop:
   jq:
   kubernetes-cli:
   kubernetes-helm:
+  neovim:
   nmap:
   openssl:
+  stern:
   python:
   python3:
   telnet:
   tmux:
   tree:
   zsh:
+  zsh-syntax-highlighting

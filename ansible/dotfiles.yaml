@@ -3,6 +3,11 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: load custom vars
+      include_vars: ../vars.yaml
+      tags:
+        - always
+
     - name: Make sure dotfiles are present
       git:
         repo: https://github.com/oemilsson/dotfiles
@@ -23,6 +28,13 @@
         dest: ~/.local/share/oh-my-zsh
         update: yes
 
+    - name: Create zshenv file
+      copy:
+        dest: "/etc/zshenv"
+        content: |
+          ZDOTDIR="$HOME/.config/zsh"
+      become: yes
+
     - name: Install tmux plugin manager
       git:
         repo: https://github.com/tmux-plugins/tpm.git
@@ -31,11 +43,12 @@
 
     - name: Download k3s binary x64
       get_url:                                                           
-        url: https://github.com/rancher/k3s/releases/download/v.0.5.0/k3s
+        url: https://github.com/rancher/k3s/releases/download/{{ k3s_version }}/k3s
         dest: /usr/local/bin/k3s
         owner: root
         group: root
         mode: 755
+      become: yes
       when: ( ansible_facts.architecture == "x86_64" )
 
     - name: Create folder
@@ -45,6 +58,7 @@
       loop:
         - "~/.config/tmux/"
         - "~/.config/nvim/"
+        - "~/.config/zsh/"
 
     - include: tasks/link_files.yaml
       tags:
