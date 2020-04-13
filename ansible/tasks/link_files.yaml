@@ -6,4 +6,5 @@
     state: link
   loop:
     - { src: "~/.dotfiles/config/init.vim", dest: "~/.config/nvim/.init.vim"}
-    - { src: "~/.dotfiles/config/.tmux.conf", dest: "~/.config/tmux/.tmux.conf"}
+    - { src: "~/.dotfiles/config/init.vim", dest: "~/.config/nvim/.init.vim"}
+    - { src: "~/.dotfiles/config/com.googlecode.iterm2.plist", dest: "~/Library/Preferences/com.googlecode.iterm2.plist"}

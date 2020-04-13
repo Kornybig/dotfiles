@@ -3,6 +3,7 @@ formula:
   ack:
   ansible:
   neovim:
+  stern:
   archey:
   bash-completion:
   bash:
