@@ -1,0 +1,5 @@
+alias v=nvim
+alias pip=pip3
+alias k=kubectl
+alias h=helm
+alias python=python3
