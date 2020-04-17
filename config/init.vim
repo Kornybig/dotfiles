@@ -27,6 +27,7 @@ Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nanotech/jellybeans.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'cloudhead/neovim-fuzzy'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
