@@ -3,7 +3,7 @@ if (has('termguicolors'))
 endif
 
 syntax on
-filetype off
+filetype plugin indent on
 
 set number
 set nobackup
@@ -12,6 +12,9 @@ set numberwidth=1
 set textwidth=120
 set cmdheight=2
 set noswapfile
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -22,18 +25,25 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'derekwyatt/vim-scala'
-Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
-Plug 'nanotech/jellybeans.vim'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank']
 Plug 'joshdick/onedark.vim'
 Plug 'cloudhead/neovim-fuzzy'
 Plug 'vimwiki/vimwiki'
+Plug 'preservim/nerdtree'
+Plug 'ianks/vim-tsx'
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
 color onedark
 
-au BufRead, BufNewFile *.sbt set filetype=scala
+
+au BufNewFile,BufRead *.ts setlocal filetype=typescript
+au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 
 " fuzzy finder with ctrl-p
 nnoremap <C-p> :FuzzyOpen<CR>
@@ -76,4 +86,17 @@ endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 " </CoCsettings>
+
+
+
+" </NerdTREEsettings>
+
+"Open NERDTree if no file is specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
