@@ -2,6 +2,7 @@
 formula:
   ack:
   ansible:
+  coreutils:
   archey:
   bash-completion:
   bash:
