@@ -14,6 +14,11 @@
   tags:
     - brew_cask
 
+- name: Include APT package list
+  include_vars: vars/apt.yaml
+  tags:
+    - apt
+
 - block:
   - name: Update/Upgrade Homebrew
     homebrew:
@@ -50,3 +55,19 @@
       - brew_cask
 
   when: ansible_os_family == "Darwin"
+
+- block:
+  - name: Update/Upgrade apt
+    apt:
+      update_cache: true
+      upgrade: dist
+
+  - name: Manage apt packages
+    apt:
+      name: "{{ item.key }}"
+      state: "{{ item.value.state | default('latest') }}"
+    with_dict: "{{apt}}"
+
+  become: true
+  when: ansible_os_family == "Debian"
+  tags: apt

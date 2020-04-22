@@ -1,0 +1,39 @@
+apt:
+  # CLI
+  ansible:
+  bash-completion:
+  bash:
+  binwalk:
+  coreutils:
+  curl:
+  docker-compose:
+  docker.io:
+  grep:
+  htop:
+  hydra:
+  iftop:
+  net-tools:
+  nmap:
+  openssl:
+  python-pip:
+  python-setuptools:
+  python:
+  python3-pip:
+  python3-setuptools:
+  python3:
+  ruby:
+  tmux:
+  tree:
+  virtualbox:
+  wget:
+  zsh:
+
+  # GUI
+  chromium-browser:
+  firefox:
+  i3-wm:
+  i3blocks:
+  i3lock:
+  i3status:
+  pavucontrol:
+  vlc:
