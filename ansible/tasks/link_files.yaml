@@ -1,5 +1,5 @@
 ---
-- name: link dotfiles
+- name: link general dotfiles
   file:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -7,7 +7,15 @@
   loop:
     - { src: "~/.dotfiles/config/init.vim", dest: "~/.config/nvim/init.vim" }
     - { src: "~/.dotfiles/config/.tmux.conf", dest: "~/.config/tmux/.tmux.conf" }
-    - { src: "~/.dotfiles/config/com.googlecode.iterm2.plist", dest: "~/Library/Preferences/com.googlecode.iterm2.plist" }
     - { src: "~/.dotfiles/config/.aliases", dest: "~/.config/zsh/.aliases" }
     - { src: "~/.dotfiles/config/.zshrc", dest: "~/.config/zsh/.zshrc" }
     - { src: "~/.dotfiles/config/.zshenv", dest: "~/.config/zsh/.zshenv" }
+
+- name: link osx specific files
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "~/.dotfiles/config/com.googlecode.iterm2.plist", dest: "~/Library/Preferences/com.googlecode.iterm2.plist" }
+  when: ansible_os_family == "Darwin"

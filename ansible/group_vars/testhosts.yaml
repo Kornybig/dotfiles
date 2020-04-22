@@ -1,0 +1,4 @@
+---
+ansible_ssh_user: olle 
+ansible_ssh_pass: Password!1234 
+host_key_checking: false
