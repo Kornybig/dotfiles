@@ -12,8 +12,8 @@ set numberwidth=1
 set textwidth=120
 set cmdheight=2
 set noswapfile
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " auto-install vim-plug
@@ -25,10 +25,13 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank']
+let g:coc_global_extensions = [
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
 Plug 'joshdick/onedark.vim'
 Plug 'cloudhead/neovim-fuzzy'
 Plug 'vimwiki/vimwiki'
@@ -36,6 +39,9 @@ Plug 'preservim/nerdtree'
 Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+
+
 
 call plug#end()
 
@@ -86,17 +92,19 @@ endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" run prettier on save
+
 
 " </CoCsettings>
 
+" <NerdTREEsettings>
 
-
-" </NerdTREEsettings>
-
-"Open NERDTree if no file is specified
+"cript", "typescriptreact"Open NERDTree if no file is specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Toggle NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
+" </NerdTREEsettings>
