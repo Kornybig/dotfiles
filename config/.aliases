@@ -1,4 +1,8 @@
-alias v=nvim
+if [ -x "$(command -v nvim)" ]; then
+  alias v=nvim
+  alias vi=nvim
+  alias vim=nvim
+fi
 alias pip=pip3
 alias k=kubectl
 alias h=helm
