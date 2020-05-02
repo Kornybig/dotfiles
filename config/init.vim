@@ -33,7 +33,6 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ ]
 Plug 'joshdick/onedark.vim'
-Plug 'cloudhead/neovim-fuzzy'
 Plug 'vimwiki/vimwiki'
 Plug 'preservim/nerdtree'
 Plug 'ianks/vim-tsx'
@@ -50,9 +49,6 @@ color onedark
 
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
-
-" fuzzy finder with ctrl-p
-nnoremap <C-p> :FuzzyOpen<CR>
 
 " <CoCsettings>
 nmap <silent> gd <Plug>(coc-definition)
