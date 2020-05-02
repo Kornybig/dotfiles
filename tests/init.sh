@@ -1,7 +1,44 @@
 #!/usr/bin/env bash
 export ANSIBLE_CONFIG=$HOME/.dotfiles/tests/ansible.cfg
+virtualmachine=""
 
-case "$1" in
+
+while getopts ":kh" opt; do
+  case ${opt} in
+    k)
+      KEEP=true
+      ;;
+    h)
+      echo "Usage:"
+      echo "    init.sh -h                      Display this help message."
+      echo "    init.sh -k                      Keep virtualmachine running after test."
+      echo "    init.sh test <Virtualmachine>   Exec test on <Virtualmachine>."
+      exit 0
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+subcommand=$1; shift
+case "$subcommand" in
+  # Parse options to the install sub command
+  test)
+    virtualmachine=$1; shift  # Remove 'install' from the argument list
+
+    shift $((OPTIND -1))
+    ;;
+esac
+
+
+case "$virtualmachine" in
     Debian)
         VM="1027a12e-7989-426d-8b9c-b133dae2142e"
         OS="debian"
@@ -38,5 +75,8 @@ ansible-playbook $HOME/.dotfiles/ansible/dotfiles.yaml \
     --extra-vars "ansible_sudo_pass=Password!1234" \
     --limit $OS
 
-VBoxManage controlvm $VM poweroff soft
+if [[ $KEEP != true ]]; then
+  VBoxManage controlvm $VM poweroff soft
+fi
+
 rm $HOME/.dotfiles/tests/ansible.cfg
