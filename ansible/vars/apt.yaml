@@ -3,16 +3,12 @@ apt:
   ansible:
   bash-completion:
   bash:
-  binwalk:
   coreutils:
   curl:
   docker-compose:
   docker.io:
   grep:
   htop:
-  hydra:
-  iftop:
-  net-tools:
   nmap:
   openssl:
   python-pip:
