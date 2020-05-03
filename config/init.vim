@@ -16,6 +16,8 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+let g:hardtime_default_on = 1 " Hardmode on!
+
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -39,7 +41,7 @@ Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-
+Plug 'takac/vim-hardtime'
 
 
 call plug#end()
@@ -104,3 +106,4 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
 " </NerdTREEsettings>
+
